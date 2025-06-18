@@ -7,8 +7,7 @@ const HeroSection = () => {
                 <h1>YOUR FEET DESERVE THE BEST</h1>
                 <p>
                     YOUR FEET DESERVE THE BEST AND WE’RE HERE TO HELP YOU WITH OUR
-                    SHOES.YOUR FEET DESERVE THE BEST AND WE’RE HERE TO HELP YOU WITH OUR
-                    SHOES.
+                    SHOES. WE’RE HERE TO DELIVER IT WITH OUR PREMIUM FOOTWEAR.
                 </p>
 
                 <div className={styles["hero-btn"]}>
