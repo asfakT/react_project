@@ -9,11 +9,11 @@ const Navigation = () => {
             </div>
             <ul>
                 <li><Link to="/">Menu</Link></li>
-                <li><Link to="/location">Location</Link></li>
+                <li><Link to="/dicegame">Dice Game</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
             </ul>
-            <button>login</button>
+            <button className="btn-login">login</button>
         </nav>
     );
 };
