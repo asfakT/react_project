@@ -37,8 +37,8 @@ const Navigation = ({ user, setUser }) => {
               </>
             ) : (
               <>
-                <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
-                <Link to="/register" className="btn btn-primary">Register</Link>
+                <Link to="/login" className="btn btn-outline-danger me-2">Login</Link>
+                <Link to="/register" className="btn btn-danger">Register</Link>
               </>
             )}
           </div>

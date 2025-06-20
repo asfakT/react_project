@@ -11,8 +11,8 @@ const HeroSection = () => {
                 </p>
 
                 <div className={styles["hero-btn"]}>
-                    <button className="btn-login">Shop Now </button>
-                    <button className={styles["btn-login"]}>Category</button>
+                    <button className="btn btn-danger">Shop Now </button>
+                    <button className="btn btn-outline-danger">Category</button>
                 </div>
 
                 <div className={styles.shopping}>
