@@ -27,6 +27,8 @@ const HeroSection = () => {
             <div className={styles["hero-image"]}>
                 <img src="/images/hero-image.png" alt="hero-image" />
             </div>
+
+            
         </main>
     );
 };
