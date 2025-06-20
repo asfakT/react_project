@@ -2,8 +2,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
-    const [credentials, setCredentials] = useState({ username: "", email: "", password: "" });
+const Login = ({ setUser }) => {
+    const [credentials, setCredentials] = useState({
+        username: "",
+        email: "",
+        password: ""
+    });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -13,20 +17,20 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Demo login success - Save user with name
         const demoUser = {
             username: credentials.username,
-            email: credentials.email,
+            email: credentials.email
         };
 
         localStorage.setItem("user", JSON.stringify(demoUser));
-        alert(`Login successful! Welcome ${credentials.username}`);
-        navigate("/"); // Go to homepage
+        setUser(demoUser);
+        alert(`Login successful! Welcome ${demoUser.username}`);
+        navigate("/");
     };
 
     return (
         <div className="container d-flex justify-content-center align-items-center mt-5">
-            <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
+            <div className="card shadow p-4" style={{ width: '100%', maxWidth: '500px' }}>
                 <h2 className="text-center mb-4">Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -34,8 +38,8 @@ const Login = () => {
                         <input
                             type="text"
                             name="username"
-                            placeholder="Enter Username"
                             className="form-control"
+                            placeholder="Enter username"
                             onChange={handleChange}
                             required
                         />
@@ -44,6 +48,7 @@ const Login = () => {
                         <label className="form-label">Email</label>
                         <input
                             type="email"
+                            name="email"
                             className="form-control"
                             placeholder="Enter email"
                             onChange={handleChange}
@@ -54,8 +59,9 @@ const Login = () => {
                         <label className="form-label">Password</label>
                         <input
                             type="password"
+                            name="password"
                             className="form-control"
-                            placeholder="Enter password"
+                            placeholder="Enter Password"
                             onChange={handleChange}
                             required
                         />
