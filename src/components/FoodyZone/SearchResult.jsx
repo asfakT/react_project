@@ -1,31 +1,34 @@
 import styled from 'styled-components';
 import { BASE_URL } from './FoodyZone';
 import { Button } from './FoodyZone';
+import { Container } from './FoodyZone';
 
 const SearchResult = ({ data }) => {
     return (
         <div>
             <FoodCardContainer>
-                <FoodCards>
-                    {data?.length > 0 ? (
-                        data.map(({ name, image, text , price}) => (
-                            <FoodCard key={name}>
-                                <div className='food_image'>
-                                    <img src={BASE_URL + image} alt="" />
-                                </div>
-                                <div className='food_info'>
-                                    <div className='info'>
-                                        <h3>{name}</h3>
-                                        <p>{text}</p>
+                <Container>
+                    <FoodCards>
+                        {data?.length > 0 ? (
+                            data.map(({ name, image, text, price }) => (
+                                <FoodCard key={name}>
+                                    <div className='food_image'>
+                                        <img src={BASE_URL + image} alt="" />
                                     </div>
-                                    <Button>${price.toFixed(2)}</Button>
-                                </div>
-                            </FoodCard>
-                        ))
-                    ) : (
-                        <p>No results found</p>
-                    )}
-                </FoodCards>
+                                    <div className='food_info'>
+                                        <div className='info'>
+                                            <h3>{name}</h3>
+                                            <p>{text}</p>
+                                        </div>
+                                        <Button>${price.toFixed(2)}</Button>
+                                    </div>
+                                </FoodCard>
+                            ))
+                        ) : (
+                            <p>No results found</p>
+                        )}
+                    </FoodCards>
+                </Container>
             </FoodCardContainer>
         </div>
     );
@@ -34,7 +37,7 @@ const SearchResult = ({ data }) => {
 export default SearchResult;
 
 const FoodCardContainer = styled.section`
-    height: 70vh;
+    min-height: 70vh;
     background-image: url('/images/bg.png');
     background-size: cover;
 `;

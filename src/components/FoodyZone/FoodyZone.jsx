@@ -9,19 +9,19 @@ const FoodyZone = () => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [filteredData, setFilteredData] = useState(null);
+    const [selectedBtn, setSelectedBtn] = useState("all");
 
     useEffect(() => {
 
         const fetchFoodData = async () => {
             setLoading(true);
-
             try {
                 const response = await fetch(BASE_URL);
-
                 const json = await response.json();
-
                 console.log("Fetched JSON:", json);
                 setData(json);
+                setFilteredData(json);
                 setLoading(false);
 
             } catch (error) {
@@ -31,6 +31,47 @@ const FoodyZone = () => {
         }
         fetchFoodData();
     }, [])
+
+    const searchFood = (e) => {
+        const searchValue = e.target.value;
+        console.log(searchValue);
+        if (searchValue === "") {
+            setFilteredData(null);
+        }
+        const filter = data?.filter((food) => food.name.toLowerCase().includes(searchValue.toLowerCase()));
+        setFilteredData(filter);
+    }
+
+    const filterFood = (type) => {
+        if (type === "all") {
+            setFilteredData(data);
+            setSelectedBtn("all");
+            return;
+        }
+
+        const filter = data?.filter((food) => food.type.toLowerCase().includes(type.toLowerCase()));
+        setFilteredData(filter);
+        setSelectedBtn(type);
+    }
+
+    const filterBtns = [
+        {
+            name: "All",
+            type: "all",
+        },
+        {
+            name: "Breakfast",
+            type: "breakfast",
+        },
+        {
+            name: "Lunch",
+            type: "lunch",
+        },
+        {
+            name: "Dinner",
+            type: "dinner",
+        },
+    ];
 
     if (error) return <div>{error}</div>
     if (loading) return <div>Loading...</div>
@@ -44,19 +85,23 @@ const FoodyZone = () => {
                     <img src="/images/Foody Zone.png" alt="foodlogo" />
                 </div>
                 <div className='search'>
-                    <input placeholder='search food' />
+                    <input onChange={searchFood} placeholder='search food' />
                 </div>
             </TopContainer>
 
             <FilterContainer>
-                <Button>All</Button>
-                <Button>Breakfast</Button>
-                <Button>Lunch</Button>
-                <Button>Dinner</Button>
+                {
+                    filterBtns.map((value) => (
+                        <Button isSelected={selectedBtn === value.type}
+                            key={value.name}
+                            onClick={() => filterFood(value.type)}>{value.name}
+                        </Button>
+                    ))
+                }
             </FilterContainer>
-
-            <SearchResult data={data} />
-        </Container></>
+        </Container>
+            <SearchResult data={filteredData} />
+        </>
     );
 };
 
@@ -68,33 +113,39 @@ const GlobalStyle = createGlobalStyle`
         color: white;
         min-height: 100vh;
     }
-
 `
 
-const Container = styled.div`
-    background-color: #323334;
+export const Container = styled.div`
     Max-width: 1200px;
     margin : 0 auto;
 `;
 
 const TopContainer = styled.section`
-    min-height: 140px;
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    align-items: center;
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  align-items: center;
 
-    .search {
-        input {
-            background-color: transparent;
-            border: 1px solid red;
-            color: white;
-            border-redius: 5px;
-            height: 40px;
-            font-size: 16px;
-            padding: 5px;
-        }
+  .search {
+    input {
+      background-color: transparent;
+      border: 1px solid red;
+      color: white;
+      border-radius: 5px;
+      height: 40px;
+      font-size: 16px;
+      padding: 0 10px;
+      &::placeholder {
+        color: white;
+      }
     }
+  }
+
+  @media (0 < width < 600px) {
+    flex-direction: column;
+    height: 120px;
+  }
 `;
 
 const FilterContainer = styled.section`
@@ -105,11 +156,16 @@ const FilterContainer = styled.section`
 `;
 
 export const Button = styled.button`
-    background: #FF4343;
-    border-redius: 5px;
-    padding: 6px 12px;
-    border: none;
-    color: white;
+  background: ${({ isSelected }) => (isSelected ? "#f22f2f" : "#ff4343")};
+  outline: 1px solid ${({ isSelected }) => (isSelected ? "white" : "#ff4343")};
+  border-radius: 5px;
+  padding: 6px 12px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background-color: #f22f2f;
+  }
 `;
 
 
