@@ -25,6 +25,7 @@ const Navigation = ({ user, setUser }) => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item"><Link className="nav-link" to="/">Menu</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/dicegame">Dice Game</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/foodyzone">Foody Zone</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
           </ul>
