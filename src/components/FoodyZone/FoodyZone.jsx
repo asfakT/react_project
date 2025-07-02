@@ -24,6 +24,7 @@ const FoodyZone = () => {
                 setFilteredData(json);
                 setLoading(false);
 
+            // eslint-disable-next-line no-unused-vars
             } catch (error) {
                 setError("Unable to fetch data");
                 setLoading(false);

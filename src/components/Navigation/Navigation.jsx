@@ -26,6 +26,7 @@ const Navigation = ({ user, setUser }) => {
             <li className="nav-item"><Link className="nav-link" to="/">Menu</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/dicegame">Dice Game</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/foodyzone">Foody Zone</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/quiz">Quiz</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
           </ul>

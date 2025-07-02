@@ -10,6 +10,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import FoodyZone from './components/FoodyZone/FoodyZone';
 import About from './components/About/About';
+import Quiz from './components/Quiz/Quiz';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/dicegame" element={<DiceGame />} />
         <Route path='/foodyzone' element= {<FoodyZone/>} />
+        <Route path='/quiz' element= {<Quiz/>}/>
         <Route path='/about' element={<About/>}></Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
